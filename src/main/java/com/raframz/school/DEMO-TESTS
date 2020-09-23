@@ -1,0 +1,27 @@
+		studentRepository.saveStudentWithPassport(); // Creates the students (hardcoded un the repository)
+		log.info("Getting the 10001 -> {}", repository.getAll());
+
+		List<Review> reviews = new ArrayList<>();
+		reviews.add(new Review("9", "Awesome course"));
+		reviews.add(new Review("7", "I learned a lot"));
+
+		courseRepository.addReviewsForCourse(10003L, reviews);
+
+		studentRepository.insertHardCodedStudentAndCourse();
+
+		studentRepository.insertStudentAndCourse(
+				new Student("JAIRO REYES"),
+				new Course("Design on Apps mobiles"));
+
+		employeeRepository.insert(
+				new FullTimeEmployee("GEORGE SAVEGE",
+				new BigDecimal("10000")));
+
+		employeeRepository.insert(
+				new PartTimeEmployee("BILL GATES",
+				new BigDecimal("50")));
+
+		// This only will run applying @Inheritance annotation in superclass
+		log.info("All Employees ->{}", employeeRepository.getAll());
+		log.info("All Full time employees ->{}", employeeRepository.getAllFullTimeEmployees());
+		log.info("All Part time employees ->{}", employeeRepository.getAllPartTimeEmployees());

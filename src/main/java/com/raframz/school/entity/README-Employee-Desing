@@ -1,0 +1,34 @@
+Depending on the design of our database we can select 3 types of
+inheritances annotations for make the tables of the entities
+
+1. SINGLE TABLE : It creates a single table which contains all the
+concrete classes records in a column named DATA_TYPE, if you want to change
+this column name, you can define de name with the discriminator annotation.
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "EmployeeType")
+class Superclass {
+
+}
+
+2. TABLE_PER_CLASS :  It creates a table for each concrete class
+of the superclass, for retrieve all the records of the superclass
+HIBERNATE makes an SQL UNION select.
+
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
+3. JOINED : A strategy in which fields that are specific to a
+subclass are mapped to a separate table than the fields
+that are common to the parent class, and a join is
+performed to instantiate the subclass.
+
+@Inheritance(strategy = InheritanceType.JOINED)
+
+4. MappedSuperClass A class designated with the <code>MappedSuperclass</code>
+ annotation can be mapped in the same way as an entity except that the
+ mappings will apply only to its subclasses since no table
+exists for the mapped superclass itself. When applied to the
+subclasses the inherited mappings will apply in the context
+of the subclass tables. Mapping information may be overridden
+in such subclasses by using the <code>AttributeOverride</code> and
+<code>AssociationOverride</code> annotations or corresponding XML elements
